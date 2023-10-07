@@ -13,22 +13,7 @@ class FlutterTencentAdBiddingController {
   }
 
   //回传竞价结果
-  void biddingResult(FlutterTencentBiddingResult result){
-    //竞价成功
-    if(result.isSuccess){
-      _methodChannel?.invokeMethod('biddingSucceeded', {
-        'expectCostPrice': result.expectCostPrice,
-        'highestLossPrice': result.highestLossPrice,
-      });
-      //竞价失败
-    }else{
-      _methodChannel?.invokeMethod('biddingSucceeded', {
-        'winPrice': result.winPrice,
-        'lossReason': result.lossReason,
-        'adnId': result.adnId,
-      });
-    }
-  }
+  void biddingResult(FlutterTencentBiddingResult result) {}
 }
 
 class FlutterTencentBiddingResult {
@@ -47,7 +32,8 @@ class FlutterTencentBiddingResult {
   ///[expectCostPrice] 竞胜出价，类型为Integer
   ///
   ///[highestLossPrice] 最大竞败方出价，类型为Integer
-  FlutterTencentBiddingResult success(int expectCostPrice,int highestLossPrice) {
+  FlutterTencentBiddingResult success(
+      int expectCostPrice, int highestLossPrice) {
     this.isSuccess = true;
     this.expectCostPrice = expectCostPrice;
     this.highestLossPrice = highestLossPrice;

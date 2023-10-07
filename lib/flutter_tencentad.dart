@@ -1,19 +1,15 @@
-export 'flutter_tencentad_stream.dart';
-export 'flutter_tencentad_code.dart.dart';
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tencentad/banner/banner_ad_view.dart';
-import 'package:flutter_tencentad/splash/splash_ad_view.dart';
+
 import 'flutter_tencentad_code.dart.dart';
 
-import 'express/express_ad_view.dart';
-
-part 'flutter_tencentad_callback.dart';
+export 'flutter_tencentad_code.dart.dart';
+export 'flutter_tencentad_stream.dart';
 
 part 'flutter_tencentad_bidding_controller.dart';
+part 'flutter_tencentad_callback.dart';
 
 class FlutterTencentad {
   static const MethodChannel _channel =
@@ -37,20 +33,21 @@ class FlutterTencentad {
     bool? debug,
     int? channelId,
   }) async {
-    return await _channel.invokeMethod("register", {
-      "androidId": androidId,
-      "iosId": iosId,
-      "debug": debug ?? false,
-      "channelId": channelId ?? FlutterTencentadChannel.other,
-      "personalized": personalized ?? FlutterTencentadPersonalized.show,
-    });
+    // return await _channel.invokeMethod("register", {
+    //   "androidId": androidId,
+    //   "iosId": iosId,
+    //   "debug": debug ?? false,
+    //   "channelId": channelId ?? FlutterTencentadChannel.other,
+    //   "personalized": personalized ?? FlutterTencentadPersonalized.show,
+    // });
+    return true;
   }
 
   ///
   /// # 获取SDK版本号
   ///
   static Future<String> getSDKVersion() async {
-    return await _channel.invokeMethod("getSDKVersion");
+    return '0.1';
   }
 
   ///
@@ -84,17 +81,7 @@ class FlutterTencentad {
     bool? videoMuted,
     bool? isBidding,
   }) async {
-    return await _channel.invokeMethod("loadRewardVideoAd", {
-      "androidId": androidId,
-      "iosId": iosId,
-      "rewardName": rewardName,
-      "rewardAmount": rewardAmount,
-      "userID": userID,
-      "customData": customData ?? "",
-      "videoMuted": videoMuted ?? false,
-      "downloadConfirm": downloadConfirm ?? false,
-      "isBidding": isBidding ?? false,
-    });
+    return true;
   }
 
   ///
@@ -103,7 +90,7 @@ class FlutterTencentad {
   /// [result] 竞价成功、失败后调用 [FlutterTencentBiddingResult] ,isBidding = true时必传
   static Future<bool> showRewardVideoAd(
       {FlutterTencentBiddingResult? result}) async {
-    return await _channel.invokeMethod("showRewardVideoAd", result?.toJson() ?? {});
+    return true;
   }
 
   ///
@@ -126,13 +113,7 @@ class FlutterTencentad {
     bool? downloadConfirm,
     bool? isBidding,
   }) async {
-    return await _channel.invokeMethod("loadInterstitialAD", {
-      "androidId": androidId,
-      "iosId": iosId,
-      "isFullScreen": isFullScreen,
-      "downloadConfirm": downloadConfirm ?? false,
-      "isBidding": isBidding ?? false,
-    });
+    return true;
   }
 
   ///
@@ -143,7 +124,7 @@ class FlutterTencentad {
   ///
   static Future<bool> showUnifiedInterstitialAD(
       {FlutterTencentBiddingResult? result}) async {
-    return await _channel.invokeMethod("showInterstitialAD", result?.toJson() ?? {});
+    return true;
   }
 
   ///
@@ -174,16 +155,7 @@ class FlutterTencentad {
       bool? isBidding,
       FlutterTencentAdBiddingController? bidding,
       FlutterTencentadBannerCallBack? callBack}) {
-    return BannerAdView(
-      androidId: androidId,
-      iosId: iosId,
-      viewWidth: viewWidth,
-      viewHeight: viewHeight,
-      callBack: callBack,
-      downloadConfirm: downloadConfirm ?? false,
-      isBidding: isBidding ?? false,
-      bidding: bidding,
-    );
+    return Container();
   }
 
   ///
@@ -213,15 +185,7 @@ class FlutterTencentad {
       bool? isBidding,
       FlutterTencentAdBiddingController? bidding,
       FlutterTencentadSplashCallBack? callBack}) {
-    return SplashAdView(
-      androidId: androidId,
-      iosId: iosId,
-      fetchDelay: fetchDelay,
-      callBack: callBack,
-      downloadConfirm: downloadConfirm ?? false,
-      isBidding: isBidding ?? false,
-      bidding: bidding,
-    );
+    return Container();
   }
 
   ///
@@ -252,20 +216,11 @@ class FlutterTencentad {
       bool? isBidding,
       FlutterTencentAdBiddingController? bidding,
       FlutterTencentadExpressCallBack? callBack}) {
-    return ExpressAdView(
-      androidId: androidId,
-      iosId: iosId,
-      viewWidth: viewWidth,
-      viewHeight: viewHeight,
-      callBack: callBack,
-      downloadConfirm: downloadConfirm ?? false,
-      isBidding: isBidding ?? false,
-      bidding: bidding,
-    );
+    return Container();
   }
 
   ///进入APP下载列表页
   static Future<bool> enterAPPDownloadListPage() async {
-    return await _channel.invokeMethod("enterAPPDownloadListPage", {});
+    return true;
   }
 }
